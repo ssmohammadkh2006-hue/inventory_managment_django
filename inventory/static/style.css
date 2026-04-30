@@ -1,0 +1,186 @@
+
+/* General */
+body {
+  margin: 0;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar -------------------------------------*/
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  color: white;
+  padding-top: 20px;
+}
+
+/* Title */
+.sidebar h4 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* Links */
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: 0.4s;
+  font-size: larger;
+}
+
+/* Hover */
+.sidebar a:hover {
+  background: #053d75;
+  padding-left: 25px;
+}
+/* Sidebar -------------------------------------*/
+
+
+/* Navbar --------------------------------------------*/
+.navbar {
+  margin-left: 230px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.navbar-brand{
+  font-weight: bold;
+ font-size: x-larger;
+
+}
+.name {
+    background: linear-gradient(90deg, #ff5733, #33c1ff );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bolder;
+    transition: 0.4s;
+}
+/* Navbar --------------------------------------------*/
+
+ 
+ 
+/*dashboard -------------------------------------------*/
+
+/* Content */
+.content {
+  margin-left: 230px;
+  padding: 25px;
+
+}
+label{
+  font-weight: bold;
+}
+/* Cards */
+.card {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform:scale(1.02);
+}
+
+/* Stats */
+.stat-icon {
+  font-size: 28px;
+}
+
+.stat-number {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* Colors (تقدر تغيرهم لاحقاً) */
+.stat1 { color: #3b82f6; }
+.stat2 { color: #22c55e; }
+.stat3 { color: #f59e0b; }
+
+/* Progress */
+.progress {
+  height: 8px;
+  border-radius: 10px;
+}
+
+.list-group-item {
+  border: none;
+  padding: 12px 0;
+}
+
+.list-group-item i {
+  font-size: 14px;
+}
+
+
+/*dashboard -------------------------------------------*/
+
+.content {
+   margin-left: 240px;
+   width: 80%;
+}
+
+/* delete ----------------------------------------------*/
+  .delete-card {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    text-align: center;
+  }
+  .delete-card h3 {
+    color: #dc3545;
+    margin-bottom: 20px;
+  }
+/* delete ----------------------------------------------*/
+
+footer{
+  margin-left: 230px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+
+.about-card {
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.icon {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+/* تحسين العناوين */
+h4 {
+  font-weight: 600;
+}
+
+/* نصوص أكثر راحة للقراءة */
+p {
+  line-height: 1.7;
+  font-size: 15px;
+  color: #444;
+}
+
+/* Dark mode ready (اختياري) */
+.dark-mode .about-card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark-mode p {
+  color: #ccc;
+}

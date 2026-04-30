@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+    
+
+<!-- Content -->
+<div class="content container mt-4">
+
+  <!-- Cards Stats -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card shadow p-4 text-center">
+        <div class="stat-icon stat1 mb-2"><i class="fa fa-box fa-2x text-primary"></i></div>
+        <h6>Number Products</h6>
+        <div class="stat-number h4 text-primary">{{ total_products }}</div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow p-4 text-center">
+        <div class="stat-icon stat3 mb-2"><i class="fa fa-users fa-2x text-info"></i></div>
+        <h6>Number Customers</h6>
+        <div class="stat-number h4 text-info">{{ total_sales }}</div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow p-4 text-center">
+        <div class="stat-icon stat3 mb-2"><i class="fa fa-truck fa-2x text-success"></i></div>
+        <h6>Number Distributors</h6>
+        <div class="stat-number h4 text-success">{{ total_distributors }}</div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card shadow p-4 text-center">
+        <div class="stat-icon stat4 mb-2"><i class="fa fa-exclamation-triangle fa-2x text-danger"></i></div>
+        <h6>Low Stock</h6>
+        <div class="stat-number h4 text-danger">{{ low_stock }}</div>
+      </div>
+    </div>
+  </div>
+
+ 
+   
+   
+ 
+
+  <!-- Charts ------------------------------------->
+  <div class="row">
+
+  
+
+
+   <div class="col-md-6">
+      <div class="card shadow p-4 mb-4">
+        <h5 class="mb-3">Stock Distribution</h5>
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+      <div class="card shadow p-4 mb-4">
+        <h5 class="mb-3">Sales Overview</h5>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+
+   </div>
+  </div>
+ 
+ 
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+// Bar Chart (Distributors)
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ dist_names|safe }},
+    datasets: [{
+      label: 'Distributor Load',
+      data: {{ dist_loads|safe }},
+      backgroundColor: ['#0d6efd','#198754','#ffc107','#dc3545','#0dcaf0']
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+
+
+// Line Chart (Sales)
+new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: {{ months|safe }},
+    datasets: [{
+      label: 'Sales Quantity',
+      data: {{ sales_data|safe }},
+      borderColor: '#0d6efd',
+      backgroundColor: 'rgba(13,110,253,0.2)',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+
+</script>
+
+
+{% endblock %}

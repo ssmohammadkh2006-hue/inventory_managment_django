@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-primary ">Add New Product</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row">
+
+        <!-- Product Name -->
+        <div class="col-md-6 mb-3">
+          <label>Product Name</label>
+          <input type="text" name="name" class="form-control" placeholder="Enter product name" required>
+        </div>
+
+        <!-- SKU -->
+        <div class="col-md-6 mb-3">
+          <label>SKU / Product Code</label>
+          <input type="text" name="sku" class="form-control" placeholder="Unique product code" required>
+        </div>
+
+        <!-- Quantity -->
+        <div class="col-md-4 mb-3">
+          <label>Quantity</label>
+          <input type="number" name="quantity" class="form-control" placeholder="Enter quantity" required>
+        </div>
+
+        <!-- Minimum Stock -->
+        <div class="col-md-4 mb-3">
+          <label>Minimum Stock</label>
+          <input type="number" name="min_stock" class="form-control" placeholder="Alert level">
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-4 mb-3">
+          <label>Category</label>
+          <select name="category" class="form-control" required>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="food">Food</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+
+        <!-- Cost -->
+        <div class="col-md-4 mb-3">
+          <label>Product Cost ($)</label>
+          <input type="number" step="0.01" name="cost" class="form-control" placeholder="Enter cost" required>
+        </div>
+
+        <!-- Selling Price -->
+        <div class="col-md-4 mb-3">
+          <label>Selling Price ($)</label>
+          <input type="number" step="0.01" name="price" class="form-control" placeholder="Enter selling price" required>
+        </div>
+
+        <!-- Discount Price (بدل Ceiling) -->
+        <div class="col-md-4 mb-3">
+          <label>Discount Price</label>
+          <input type="number" step="0.01" name="discount" class="form-control" placeholder="Optional">
+        </div>
+
+        <!-- Supplier -->
+        <div class="col-md-6 mb-3">
+          <label>Supplier</label>
+          <select name="supplier" class="form-control">
+            <option disabled selected>Select Supplier</option>
+          <option value="amazon">Amazon</option>
+          <option value="alibaba">Alibaba</option>
+          <option value="local">Local Supplier</option>
+          </select>
+        </div>
+
+       <div class="col-md-6 mb-3">
+          <label>Product Image</label>
+          <input type="file" name="image" class="form-control">
+      </div>
+
+        <!-- Import Date -->
+        <div class="col-md-6 mb-3">
+          <label>Import Date</label>
+          <input type="date" name="import_date" class="form-control">
+        </div>
+
+        <!-- Size (اختياري) -->
+        <div class="col-md-6 mb-3">
+          <label>Size / Measurements</label>
+          <input type="text" name="size" class="form-control" placeholder="e.g. 10x20 cm">
+        </div>
+
+        <!-- Notes -->
+        <div class="col-md-12 mb-3">
+          <label>Notes</label>
+          <textarea name="notes" class="form-control" rows="3" placeholder="Additional details..."></textarea>
+        </div>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="text-end">
+        <button type="reset" class="btn btn-danger">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Product</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<!-- Content -->
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-center text-primary">Distributors List</h2>
+
+    <div class="mb-3">
+  <a href="{% url 'export_distributors_pdf' %}" class="btn btn-danger">
+    📊 PDF
+  </a>
+
+</div>
+
+
+    
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover text-center">
+      <thead class="thead-dark">
+  <tr>
+    <th>#</th>
+    <th>Distributor Name</th>
+    <th>Vehicle</th>
+    <th>Load</th>
+    <th>Quantity Taken</th>
+    <th>Type of Quantity</th>
+    <th>Date</th>
+    <th>Phone</th>
+    <th>Notes</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+
+<tbody>
+
+{% for d in distributors %}
+<tr>
+  <td>{{ forloop.counter }}</td>
+  <td>{{ d.distributor_name }}</td>
+  <td>{{ d.vehicle|default:"-" }}</td>
+  <td>{{ d.load|default:"-" }}</td>
+  <td>{{ d.quantity_taken }}</td>
+
+  <td>
+    {% if d.quantity_type %}
+      {{ d.get_quantity_type_display }}
+    {% else %}
+      -
+    {% endif %}
+  </td>
+
+  <td>{{ d.quantity_date|default:"-" }}</td>
+  <td>{{ d.phone|default:"-" }}</td>
+  <td>{{ d.notes|default:"-" }}</td>
+
+  <td>
+    <a href="{% url 'update_distributors' d.id %}" class="btn btn-sm btn-success">Update</a>
+    <a href="{% url 'delete_distributor' d.id %}" class="btn btn-danger btn-sm">Delete</a>
+    
+  </td>
+</tr>
+{% endfor %}
+
+
+ 
+</tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

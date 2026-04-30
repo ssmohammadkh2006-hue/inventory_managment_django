@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-center text-primary">Product List</h2>
+
+  <div class="mb-3">
+  <a href="{% url 'export_products_pdf' %}" class="btn btn-danger">
+    📊 PDF
+  </a>
+
+</div>
+  
+   
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover text-center">
+        
+      <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>SKU</th>
+        <th>Quantity</th>
+        <th>Min Stock</th>
+        <th>Category</th>
+        <th>Cost</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Supplier</th>
+        <th>Image</th>
+        <th>Import Date</th>
+        <th>Size</th>
+        <th>Notes</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+<tbody>
+  {% for p in products %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ p.name }}</td>
+    <td>{{ p.sku }}</td>
+    <td>{{ p.quantity }}</td>
+    <td>{{ p.min_stock }}</td>
+    <td>{{ p.get_category_display }}</td>
+    <td>${{ p.cost }}</td>
+    <td>${{ p.price }}</td>
+    <td>
+      {% if p.discount %}
+        ${{ p.discount }}
+      {% else %}
+        -
+      {% endif %}
+    </td>
+    <td>
+      {% if p.supplier %}
+        {{ p.get_supplier_display }}
+      {% else %}
+        -
+      {% endif %}
+    </td>
+
+    <!-- Image -->
+    <td>
+      {% if p.image %}
+        <img src="{{ p.image.url }}" width="50" height="50">
+      {% else %}
+        -
+      {% endif %}
+    </td>
+
+    <td>{{ p.import_date|default:"-" }}</td>
+    <td>{{ p.size|default:"-" }}</td>
+    <td>{{ p.notes|default:"-" }}</td>
+
+    <td>
+    <a href="{% url 'update_product' p.id %}" class="btn btn-sm btn-success">Update</a>
+    <a href="{% url 'delete_product' p.id %}" class="btn btn-danger btn-sm">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
+
+
+  </table>
+</div>
+  </div>
+</div>
+
+
+{% endblock %}

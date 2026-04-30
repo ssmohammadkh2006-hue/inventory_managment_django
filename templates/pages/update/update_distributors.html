@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-primary">Update Distributor Data</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="row">
+        <!-- Distributor Name -->
+        <div class="col-md-6 mb-2">
+          <label>Distributor Name</label>
+          <input type="text"
+                 class="form-control"
+                 name="distributor_name"
+                 value="{{ distributor.distributor_name }}"
+                 required>
+        </div>
+
+        <!-- Vehicle -->
+        <div class="col-md-6 mb-2">
+          <label>Distributor Vehicle</label>
+          <input type="text"
+                 class="form-control"
+                 name="vehicle"
+                 value="{{ distributor.vehicle }}">
+        </div>
+
+        <div class="col-md-6 mb-2">
+  <label>Product</label>
+  <select name="product" class="form-control" required>
+
+    {% for p in products %}
+      <option value="{{ p.id }}"
+        {% if distributor.product.id == p.id %}selected{% endif %}>
+        {{ p.name }}
+      </option>
+    {% endfor %}
+
+  </select>
+</div>
+
+
+
+        <!-- Load -->
+        <div class="col-md-6 mb-2">
+          <label>Distributor Load</label>
+          <input type="number"
+                 class="form-control"
+                 name="load"
+                 value="{{ distributor.load }}">
+        </div>
+
+        <!-- Quantity Taken -->
+        <div class="col-md-6 mb-2">
+          <label>Quantity Taken</label>
+          <input type="number"
+                 class="form-control"
+                 name="quantity_taken"
+                 value="{{ distributor.quantity_taken }}"
+                 required>
+        </div>
+
+        <!-- Quantity Type -->
+        <div class="col-md-6 mb-2">
+          <label>Type of Quantity</label>
+          <select name="quantity_type" class="form-control">
+
+            <option value="">Select type</option>
+
+            <option value="boxes"
+              {% if distributor.quantity_type == "boxes" %}selected{% endif %}>
+              Boxes
+            </option>
+
+            <option value="units"
+              {% if distributor.quantity_type == "units" %}selected{% endif %}>
+              Units
+            </option>
+
+            <option value="kg"
+              {% if distributor.quantity_type == "kg" %}selected{% endif %}>
+              Kg
+            </option>
+
+          </select>
+        </div>
+
+        <!-- Date -->
+        <div class="col-md-6 mb-2">
+          <label>Date of Quantity</label>
+          <input type="date"
+                 class="form-control"
+                 name="quantity_date"
+                 value="{{ distributor.quantity_date|date:'Y-m-d' }}">
+        </div>
+
+        <!-- Phone -->
+        <div class="col-md-6 mb-2">
+          <label>Distributor Phone</label>
+          <input type="tel"
+                 class="form-control"
+                 name="phone"
+                 value="{{ distributor.phone }}">
+        </div>
+
+        <!-- Notes -->
+        <div class="col-md-12 mb-2">
+          <label>Notes</label>
+          <textarea class="form-control"
+                    name="notes">{{ distributor.notes }}</textarea>
+        </div>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="text-end">
+        <a href="{% url 'distributors_list' %}" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-primary">
+          Update Distributor
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

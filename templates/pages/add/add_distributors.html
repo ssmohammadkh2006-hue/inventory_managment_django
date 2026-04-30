@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+     
+
+<!-- Content -->
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-primary">Add Distributor Data</h2>
+<form method="POST">
+  {% csrf_token %}
+
+  <div class="row">
+
+    <div class="col-md-6 mb-2">
+      <label>Distributor Name</label>
+      <input type="text" class="form-control" name="distributor_name" required>
+    </div>
+
+    <div class="col-md-6 mb-2">
+      <label>Distributor Vehicle</label>
+      <input type="text" class="form-control" name="vehicle">
+    </div>
+
+    <div class="col-md-6 mb-2">
+  <label>Product</label>
+  <select name="product" class="form-control" required>
+    <option disabled selected>Select Product</option>
+    {% for p in products %}
+      <option value="{{ p.id }}">{{ p.name }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+    <div class="col-md-6 mb-2">
+      <label>Distributor Load</label>
+      <input type="number" class="form-control" name="load">
+    </div>
+
+    <div class="col-md-6 mb-2">
+      <label>Quantity Taken</label>
+      <input type="number" class="form-control" name="quantity_taken" required>
+    </div>
+
+    <div class="col-md-6 mb-2">
+      <label>Type of Quantity</label>
+      <select name="quantity_type" class="form-control">
+        <option value="">Select type</option>
+        <option value="boxes">Boxes</option>
+        <option value="units">Units</option>
+        <option value="kg">Kg</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 mb-2">
+      <label>Date of Quantity</label>
+      <input type="date" class="form-control" name="quantity_date">
+    </div>
+
+    <div class="col-md-6 mb-2">
+      <label>Distributor Phone</label>
+      <input type="tel" class="form-control" name="phone">
+    </div>
+
+    <div class="col-md-12 mb-2">
+      <label>Notes</label>
+      <textarea class="form-control" name="notes"></textarea>
+    </div>
+
+  </div>
+
+
+  <div class="text-right">
+    <button type="reset" class="btn btn-danger">Cancel</button>
+    <button type="submit" class="btn btn-primary">Save Distributor</button>
+  </div>
+
+</form>
+  
+  </div>
+</div>
+
+{% endblock %}

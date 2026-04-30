@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-primary">Update Product Data</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="row">
+
+        <!-- Product Name -->
+        <div class="col-md-6 mb-3">
+          <label>Product Name</label>
+          <input type="text" name="name" value="{{ product.name }}" class="form-control" required>
+        </div>
+
+        <!-- SKU -->
+        <div class="col-md-6 mb-3">
+          <label>SKU / Product Code</label>
+          <input type="text" name="sku" value="{{ product.sku }}" class="form-control" required>
+        </div>
+
+        <!-- Quantity -->
+        <div class="col-md-4 mb-3">
+          <label>Quantity</label>
+          <input type="number" name="quantity" value="{{ product.quantity }}" class="form-control" required>
+        </div>
+
+        <!-- Minimum Stock -->
+        <div class="col-md-4 mb-3">
+          <label>Minimum Stock</label>
+          <input type="number" name="min_stock" value="{{ product.min_stock }}" class="form-control">
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-4 mb-3">
+          <label>Category</label>
+          <select name="category" class="form-control">
+
+            <option value="electronics" {% if product.category == "electronics" %}selected{% endif %}>Electronics</option>
+            <option value="clothing" {% if product.category == "clothing" %}selected{% endif %}>Clothing</option>
+            <option value="food" {% if product.category == "food" %}selected{% endif %}>Food</option>
+            <option value="accessories" {% if product.category == "accessories" %}selected{% endif %}>Accessories</option>
+
+          </select>
+        </div>
+
+        <!-- Cost -->
+        <div class="col-md-4 mb-3">
+          <label>Product Cost ($)</label>
+          <input type="number" step="0.01" name="cost" value="{{ product.cost }}" class="form-control" required>
+        </div>
+
+        <!-- Selling Price -->
+        <div class="col-md-4 mb-3">
+          <label>Selling Price ($)</label>
+          <input type="number" step="0.01" name="price" value="{{ product.price }}" class="form-control" required>
+        </div>
+
+        <!-- Discount -->
+        <div class="col-md-4 mb-3">
+          <label>Discount Price</label>
+          <input type="number" step="0.01" name="discount" value="{{ product.discount }}" class="form-control">
+        </div>
+
+        <!-- Supplier -->
+        <div class="col-md-6 mb-3">
+          <label>Supplier</label>
+          <select name="supplier" class="form-control">
+
+            <option value="amazon" {% if product.supplier == "amazon" %}selected{% endif %}>Amazon</option>
+            <option value="alibaba" {% if product.supplier == "alibaba" %}selected{% endif %}>Alibaba</option>
+            <option value="local" {% if product.supplier == "local" %}selected{% endif %}>Local Supplier</option>
+
+          </select>
+        </div>
+
+        <!-- Image -->
+        <div class="col-md-6 mb-3">
+          <label>Product Image</label>
+          <input type="file" name="image" class="form-control">
+
+          {% if product.image %}
+            <img src="{{ product.image.url }}" width="80" class="mt-2">
+          {% endif %}
+        </div>
+
+        <!-- Import Date -->
+        <div class="col-md-6 mb-3">
+          <label>Import Date</label>
+          <input type="date" name="import_date"
+                 value="{{ product.import_date|date:'Y-m-d' }}"
+                 class="form-control">
+        </div>
+
+        <!-- Size -->
+        <div class="col-md-6 mb-3">
+          <label>Size / Measurements</label>
+          <input type="text" name="size" value="{{ product.size }}" class="form-control">
+        </div>
+
+        <!-- Notes -->
+        <div class="col-md-12 mb-3">
+          <label>Notes</label>
+          <textarea name="notes" class="form-control" rows="3">{{ product.notes }}</textarea>
+        </div>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="text-end">
+        <a href="{% url 'product_list' %}" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-primary">Update Product</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

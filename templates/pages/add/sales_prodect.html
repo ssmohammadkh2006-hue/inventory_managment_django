@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+   
+
+<div class="content container mt-4">
+  <div class="card shadow p-4">
+    <h2 class="mb-4 text-primary">New Sale</h2>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+    {{ form.errors }}
+    </div>
+    {% endif %}
+    <form method="POST">
+  {% csrf_token %}
+
+  <div class="row">
+
+    <!-- Buyer Name -->
+    <div class="col-md-6 mb-2">
+      <label>Buyer Name / Company</label>
+      <input type="text" name="buyer_name" class="form-control" required>
+    </div>
+
+    <!-- Phone -->
+    <div class="col-md-6 mb-2">
+      <label>Phone Number</label>
+      <input type="text" name="phone" class="form-control">
+    </div>
+
+    <!-- Product -->
+    <div class="col-md-6 mb-2">
+      <label>Product</label>
+      <select name="product" class="form-control" required>
+        <option disabled selected>Select Product</option>
+        {% for p in form.fields.product.queryset %}
+          <option value="{{ p.id }}">{{ p.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Quantity -->
+    <div class="col-md-6 mb-2">
+      <label>Quantity</label>
+      <input type="number" name="quantity" class="form-control" required>
+    </div>
+
+    <!-- Total Price -->
+    <div class="col-md-6 mb-2">
+      <label>Total Price ($)</label>
+      <input type="number" step="0.01" name="total_price" class="form-control" required>
+    </div>
+
+    <!-- Sale Date -->
+    <div class="col-md-6 mb-2">
+      <label>Sale Date</label>
+      <input type="date" name="sale_date" class="form-control">
+    </div>
+
+    <!-- Notes -->
+    <div class="col-md-12 mb-2">
+      <label>Notes</label>
+      <textarea name="notes" class="form-control"></textarea>
+    </div>
+
+  </div>
+
+  <div class="text-end mt-3">
+    <a href="{% url 'sales_list' %}" class="btn btn-danger">Cancel</a>
+    <button type="submit" class="btn btn-primary">Save Sale</button>
+  </div>
+
+  </form>
+  </div>
+</div>
+{% endblock %} 
