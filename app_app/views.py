@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.db.models import Sum
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
 
  
 # pdf  تصدير ------------
@@ -170,8 +171,6 @@ def export_distributors_pdf(request):
 
     return response
 
- 
-
 
 def export_sales_pdf(request):
     response = HttpResponse(content_type='application/pdf')
@@ -270,21 +269,6 @@ def export_sales_pdf(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def About_System(request):
     return render(request,'pages/About_System.html')
 
@@ -312,7 +296,11 @@ def index(request):
     total_sales = Sale.objects.count()
     total_distributors = Distributor.objects.count()
                 # المنتجات منخفضة المخزون
-    low_stock = Product.objects.filter(quantity__lte=5).count()
+    
+
+    low_stock = Product.objects.filter(
+        quantity__lte=F('min_stock')
+    ).count()
      
     # 🔹 Chart 1: Sales per month (مثال بسيط)
     sales = Sale.objects.all()
