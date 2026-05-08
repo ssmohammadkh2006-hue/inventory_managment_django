@@ -84,8 +84,16 @@ label{
   box-shadow: 0 5px 15px rgba(0,0,0,0.06);
   transition: 0.4s;
 
-  border-left: 2px solid linear-gradient(90deg, #ff5733, #33c1ff );
-  border-right: 2px solid linear-gradient(90deg, #ff5733, #33c1ff );
+
+  border-left: 1px solid;
+  border-image: linear-gradient(90deg, #ff5733, #33c1ff) 1;
+
+  border-right: 1px solid;
+  border-image: linear-gradient(90deg, #ff5733, #33c1ff) 1;
+
+
+
+ 
 }
 
 .card:hover {
