@@ -83,6 +83,9 @@ label{
   border: none;
   box-shadow: 0 5px 15px rgba(0,0,0,0.06);
   transition: 0.4s;
+
+  border-left:5px solid #0713ff;
+  border-right:5px solid #0713ff;
 }
 
 .card:hover {
@@ -184,3 +187,4 @@ p {
 .dark-mode p {
   color: #ccc;
 }
+
