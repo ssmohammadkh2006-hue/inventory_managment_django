@@ -85,11 +85,9 @@ label{
   transition: 0.4s;
 
 
-  border-left: 1px solid;
-  border-image: linear-gradient(90deg, #ff5733, #33c1ff) 1;
+  border-left: 1px solid #ff5733;
 
-  border-right: 1px solid;
-  border-image: linear-gradient(90deg, #ff5733, #33c1ff) 1;
+  border-right: 1px solid #ff5733;
 
 
 
